@@ -37,15 +37,22 @@ var TextBox = function(textArea) {
   this.textArea = textArea;
 };
 
+TextBox.prototype.clear = function() {
+  this.textArea.value = "";
+};
+
 TextBox.prototype.setKeyup = function(f) {
   this.textArea.onkeyup = f;
 };
 
 window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
-  countdown(bar, 200);
   var textBox = new TextBox(document.getElementById('draft'));
   textBox.setKeyup(function() {
     bar.reset();
   });
+  bar.setOnZero(function() {
+    textBox.clear();
+  });
+  countdown(bar, 200);
 };
