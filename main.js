@@ -4,10 +4,20 @@ var Bar = function(max, progressElem) {
   this.value = max;
   this.max = max;
   this.elem = progressElem;
+  this.onZero = function(){};
+};
+
+Bar.prototype.setOnZero = function(f) {
+  this.onZero = f;
 };
 
 Bar.prototype.decrement = function(v) {
-  this.value = Math.max(this.value-v, 0);
+  if (this.value <= v) {
+    this.value = 0;
+    this.onZero();
+  } else {
+    this.value -= v;
+  }
   this.elem.value = this.value/this.max;
 };
 
