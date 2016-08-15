@@ -53,14 +53,26 @@ TextBox.prototype.setValue = function(v) {
   this.textArea.value = v;
 };
 
+function autosave(source, destination, seconds) {
+  var saveMillis = seconds * 1000;
+  setInterval(function() {
+    var text = source.getValue();
+    if (text) {  // don't ovewrite saved with nothing
+      destination.setValue(text);
+    }
+  }, saveMillis);
+}
+
 window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
-  var textBox = new TextBox(document.getElementById('draft'));
-  textBox.setKeyup(function() {
+  var saved = new TextBox(document.getElementById('saved'));
+  var draft = new TextBox(document.getElementById('draft'));
+  draft.setKeyup(function() {
     bar.reset();
   });
   bar.setOnZero(function() {
-    textBox.clear();
+    draft.clear();
   });
+  autosave(draft, saved, 60);
   countdown(bar, 200);
 };
