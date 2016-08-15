@@ -45,6 +45,14 @@ TextBox.prototype.setKeyup = function(f) {
   this.textArea.onkeyup = f;
 };
 
+TextBox.prototype.getValue = function() {
+  return this.textArea.value;
+};
+
+TextBox.prototype.setValue = function(v) {
+  this.textArea.value = v;
+};
+
 window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
   var textBox = new TextBox(document.getElementById('draft'));
