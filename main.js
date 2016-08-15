@@ -23,11 +23,19 @@ function countdown(bar, updateIntervalMillis) {
   }, updateIntervalMillis);
 }
 
+var TextBox = function(textArea) {
+  this.textArea = textArea;
+};
+
+TextBox.prototype.setKeyup = function(f) {
+  this.textArea.onkeyup = f;
+};
+
 window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
   countdown(bar, 200);
-  var textArea = document.getElementById('draft');
-  textArea.onkeyup = function() {
+  var textBox = new TextBox(document.getElementById('draft'));
+  textBox.setKeyup(function() {
     bar.reset();
-  };
+  });
 };
