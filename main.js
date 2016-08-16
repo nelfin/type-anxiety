@@ -53,6 +53,11 @@ TextBox.prototype.setValue = function(v) {
   this.textArea.value = v;
 };
 
+TextBox.prototype.save = function(anchor) {
+  var blob = new Blob([this.textArea.value], {type: "text/plain"});
+  anchor.href = URL.createObjectURL(blob);
+};
+
 function autosave(source, destination, seconds) {
   var saveMillis = seconds * 1000;
   setInterval(function() {
@@ -67,12 +72,17 @@ window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
   var saved = new TextBox(document.getElementById('saved'));
   var draft = new TextBox(document.getElementById('draft'));
+  var saveLink = document.getElementById('download-link');
   draft.setKeyup(function() {
     bar.reset();
   });
   bar.setOnZero(function() {
     draft.clear();
   });
+  saveLink.onclick = function() {
+    saved.setValue(draft.getValue());
+    saved.save(saveLink);
+  };
   autosave(draft, saved, 60);
   countdown(bar, 200);
 };
