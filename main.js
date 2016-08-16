@@ -58,6 +58,10 @@ TextBox.prototype.save = function(anchor) {
   anchor.href = URL.createObjectURL(blob);
 };
 
+TextBox.prototype.length = function() {
+  return this.getValue().length;
+};
+
 function autosave(source, destination, seconds) {
   var saveMillis = seconds * 1000;
   setInterval(function() {
@@ -68,16 +72,34 @@ function autosave(source, destination, seconds) {
   }, saveMillis);
 }
 
+var Counter = function(span) {
+  this.span = span;
+  this.value = 0;
+};
+
+Counter.prototype.set = function(v) {
+  this.value = v;
+  this.span.innerHTML = this.value;
+};
+
+Counter.prototype.reset = function() {
+  this.value = 0;
+  this.span.innerHTML = this.value;
+};
+
 window.onload = function() {
   var bar = new Bar(30, document.getElementById('anxiety-bar'));
   var saved = new TextBox(document.getElementById('saved'));
   var draft = new TextBox(document.getElementById('draft'));
   var saveLink = document.getElementById('download-link');
+  var chars = new Counter(document.getElementById('chars'));
   draft.setKeyup(function() {
     bar.reset();
+    chars.set(draft.length());
   });
   bar.setOnZero(function() {
     draft.clear();
+    chars.reset();
   });
   saveLink.onclick = function() {
     saved.setValue(draft.getValue());
