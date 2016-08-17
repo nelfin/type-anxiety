@@ -62,6 +62,18 @@ TextBox.prototype.length = function() {
   return this.getValue().length;
 };
 
+TextBox.prototype.words = function() {
+  var text = this.getValue();
+  var spaces = /\s+/g;
+  text.replace(spaces, ' ');
+  text = text.trim();
+  if (text === '') {
+    return 0;
+  } else {
+    return text.split(spaces).length;
+  }
+};
+
 function autosave(source, destination, seconds) {
   var saveMillis = seconds * 1000;
   setInterval(function() {
@@ -93,13 +105,16 @@ window.onload = function() {
   var draft = new TextBox(document.getElementById('draft'));
   var saveLink = document.getElementById('download-link');
   var chars = new Counter(document.getElementById('chars'));
+  var words = new Counter(document.getElementById('words'));
   draft.setKeyup(function() {
     bar.reset();
     chars.set(draft.length());
+    words.set(draft.words());
   });
   bar.setOnZero(function() {
     draft.clear();
     chars.reset();
+    words.reset();
   });
   saveLink.onclick = function() {
     saved.setValue(draft.getValue());
