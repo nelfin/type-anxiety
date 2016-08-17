@@ -4,16 +4,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<title>Type anxiety</title>
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
 	</head>
 	<body>
-		<p>
-			<progress value="1" max="1" id="anxiety-bar">30 seconds remaining</progress>
-			<span id="chars" name="chars">0</span> <label for="chars">characters</label>,
-			<span id="words" name="words">0</span> <label for="words">words</label>
-		</p>
-		<textarea name="saved" id="saved" rows="4" cols="40" readonly></textarea><br/>
-		<textarea name="draft" id="draft" rows="4" cols="40"></textarea>
-		<a id="download-link" download="draft.txt" href="#">Save</a>
+		<div id="wrapper">
+			<p>
+				<progress value="1" max="1" id="anxiety-bar">30 seconds remaining</progress>
+				<span id="chars" name="chars">0</span> <label for="chars">characters</label>,
+				<span id="words" name="words">0</span> <label for="words">words</label>
+			</p>
+			<textarea name="saved" id="saved" rows="4" cols="40" readonly></textarea><br/>
+			<textarea name="draft" id="draft" rows="4" cols="40"></textarea>
+			<a id="download-link" download="draft.txt" href="#">Save</a>
+		</div>
 		<script src="main.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

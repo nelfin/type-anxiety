@@ -1,0 +1,17 @@
+body {
+  font-family: Baskerville, "EB Garamond", serif;
+  font-size: 20px;
+}
+
+#wrapper {
+  width: 38rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.6;
+}
