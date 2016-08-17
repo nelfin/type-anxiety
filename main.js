@@ -24,7 +24,7 @@
 
   Bar.prototype.reset = function() {
     this.value = this.max;
-    this.elem.value = 1;
+    this.elem.value = 1;  // 100%
   };
 
   var Counter = function(span) {
@@ -38,20 +38,11 @@
   };
 
   Counter.prototype.reset = function() {
-    this.value = 0;
-    this.span.innerHTML = this.value;
+    this.set(0);
   };
 
   var TextBox = function(textArea) {
     this.textArea = textArea;
-  };
-
-  TextBox.prototype.clear = function() {
-    this.textArea.value = '';
-  };
-
-  TextBox.prototype.setKeyup = function(f) {
-    this.textArea.onkeyup = f;
   };
 
   TextBox.prototype.getValue = function() {
@@ -62,8 +53,16 @@
     this.textArea.value = v;
   };
 
+  TextBox.prototype.clear = function() {
+    this.setValue('');
+  };
+
+  TextBox.prototype.setKeyup = function(f) {
+    this.textArea.onkeyup = f;
+  };
+
   TextBox.prototype.save = function(anchor) {
-    var blob = new Blob([this.textArea.value], {type: 'text/plain'});
+    var blob = new Blob([this.getValue()], {type: 'text/plain'});
     anchor.href = URL.createObjectURL(blob);
   };
 
