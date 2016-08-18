@@ -10,6 +10,16 @@ body {
   margin-right: auto;
 }
 
+.button {
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  font-family: "Gill Sans", Puritan, Lato, sans;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #55d;
+  color: white;
+}
+
 textarea {
   width: 100%;
   font-family: inherit;
