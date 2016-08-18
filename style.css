@@ -32,3 +32,9 @@ textarea {
 #saved {
   color: inherit;
 }
+
+.flex-container {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
