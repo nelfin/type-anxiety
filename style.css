@@ -21,6 +21,7 @@ html {
   font-weight: bold;
   background-color: #55d;
   color: white;
+  border-radius: 5px;
 }
 
 textarea {
