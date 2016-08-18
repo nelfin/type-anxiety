@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: Baskerville, "EB Garamond", serif;
+  font-family: "Gill Sans", Puritan, Lato, sans;
   font-size: 16px;
   color: #111;
 }
@@ -17,7 +17,6 @@ html {
 .button {
   text-decoration: none;
   padding: 0.5rem 2rem;
-  font-family: "Gill Sans", Puritan, Lato, sans;
   font-size: 1rem;
   font-weight: bold;
   background-color: #55d;
@@ -26,7 +25,7 @@ html {
 
 textarea {
   width: 100%;
-  font-family: inherit;
+  font-family: Baskerville, "EB Garamond", serif;
   font-size: 1.4rem;
   line-height: 1.6;
   border: 0;
