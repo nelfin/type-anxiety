@@ -13,11 +13,13 @@
   };
 
   Bar.prototype.decrement = function(v) {
-    if (this.value > 0 && this.value <= v) {
-      this.value = 0;
-      this.onZero();
-    } else {
-      this.value -= v;
+    if (this.value > 0) {
+      if (this.value <= v) {
+        this.value = 0;
+        this.onZero();
+      } else {
+        this.value -= v;
+      }
     }
     this.elem.value = this.value/this.max;
   };
