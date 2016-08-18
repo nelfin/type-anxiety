@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Baskerville, "EB Garamond", serif;
   font-size: 20px;
