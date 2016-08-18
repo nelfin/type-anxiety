@@ -1,6 +1,7 @@
 body {
   font-family: Baskerville, "EB Garamond", serif;
   font-size: 20px;
+  color: #333;
 }
 
 #wrapper {
@@ -14,4 +15,10 @@ textarea {
   font-family: inherit;
   font-size: 100%;
   line-height: 1.6;
+  border: 0;
+  padding: 0.5rem;
+}
+
+#saved {
+  color: inherit;
 }
