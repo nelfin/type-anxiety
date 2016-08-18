@@ -13,7 +13,7 @@
   };
 
   Bar.prototype.decrement = function(v) {
-    if (this.value <= v) {
+    if (this.value > 0 && this.value <= v) {
       this.value = 0;
       this.onZero();
     } else {
