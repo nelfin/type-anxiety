@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 
-body {
+html {
   font-family: Baskerville, "EB Garamond", serif;
-  font-size: 20px;
+  font-size: 16px;
   color: #111;
 }
 
@@ -27,7 +27,7 @@ body {
 textarea {
   width: 100%;
   font-family: inherit;
-  font-size: 100%;
+  font-size: 1.4rem;
   line-height: 1.6;
   border: 0;
   padding: 0.5rem;
