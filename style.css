@@ -16,12 +16,18 @@ html {
 
 .button {
   text-decoration: none;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.75rem;
   font-size: 1rem;
   font-weight: bold;
   background-color: #55d;
   color: white;
   border-radius: 5px;
+}
+
+.reverse-button {
+  color: #55d;
+  border: 1px solid #55d;
+  background-color: transparent;
 }
 
 textarea {

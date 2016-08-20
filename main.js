@@ -158,7 +158,13 @@
       saved.setValue(draft.getValue());
       saved.save(saveLink);
     };
-    autosave(draft, saved, 60).start();
-    countdown(bar, 200).start();
+
+    var timers = [autosave(draft, saved, 60), countdown(bar, 200)];
+    var group = new TimerGroup(timers);
+    group.toggle();
+    var pauseButton = document.getElementById('pause-button');
+    pauseButton.onclick = function() {
+      group.toggle();
+    };
   };
 })();
