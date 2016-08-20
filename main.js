@@ -88,17 +88,20 @@
     this.interval = interval;
     this.task = task;
     this.id = -1;
+    this.paused = true;
   };
 
   Timer.prototype.start = function() {
-    if (this.id === -1) {
+    if (this.paused) {
       this.id = setInterval(this.task, this.interval);
+      this.paused = false;
     }
   };
 
   Timer.prototype.stop = function() {
-    if (this.id !== -1) {
+    if (!this.paused) {
       clearInterval(this.id);
+      this.paused = true;
     }
   };
 
