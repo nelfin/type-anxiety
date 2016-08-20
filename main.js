@@ -84,6 +84,24 @@
     }
   };
 
+  var Timer = function(interval, task) {
+    this.interval = interval;
+    this.task = task;
+    this.id = -1;
+  };
+
+  Timer.prototype.start = function() {
+    if (this.id === -1) {
+      this.id = setInterval(this.task, this.interval);
+    }
+  };
+
+  Timer.prototype.stop = function() {
+    if (this.id !== -1) {
+      clearInterval(this.id);
+    }
+  };
+
   function autosave(source, destination, seconds) {
     var saveMillis = seconds * 1000;
     setInterval(function() {
