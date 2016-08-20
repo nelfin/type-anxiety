@@ -22,12 +22,17 @@ html {
   background-color: #55d;
   color: white;
   border-radius: 5px;
+  border: 1px solid #55d;
 }
 
-.reverse-button {
+.reverse-button, .button:active {
   color: #55d;
-  border: 1px solid #55d;
   background-color: transparent;
+}
+
+.reverse-button:active {
+  background-color: #55d;
+  color: white;
 }
 
 textarea {
