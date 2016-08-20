@@ -105,6 +105,20 @@
     }
   };
 
+  var TimerGroup = function(timers) {
+    this.timers = timers;
+    this.paused = true;
+  };
+
+  TimerGroup.prototype.toggle = function() {
+    var toggler = function(t) { t.stop(); };
+    if (this.paused) {
+      toggler = function(t) { t.start(); };
+    }
+    this.timers.map(toggler);
+    this.paused = !this.paused;
+  };
+
   function autosave(source, destination, seconds) {
     var saveMillis = seconds * 1000;
     return new Timer(saveMillis, function() {
