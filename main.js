@@ -104,19 +104,19 @@
 
   function autosave(source, destination, seconds) {
     var saveMillis = seconds * 1000;
-    setInterval(function() {
+    return new Timer(saveMillis, function() {
       var text = source.getValue();
       if (text) {  // don't ovewrite saved with nothing
         destination.setValue(text);
       }
-    }, saveMillis);
+    });
   }
 
   function countdown(bar, updateIntervalMillis) {
     var update = updateIntervalMillis / 1000;
-    setInterval(function() {
+    return new Timer(updateIntervalMillis, function() {
       bar.decrement(update);
-    }, updateIntervalMillis);
+    });
   }
 
   window.onload = function() {
@@ -141,7 +141,7 @@
       saved.setValue(draft.getValue());
       saved.save(saveLink);
     };
-    autosave(draft, saved, 60);
-    countdown(bar, 200);
+    autosave(draft, saved, 60).start();
+    countdown(bar, 200).start();
   };
 })();
