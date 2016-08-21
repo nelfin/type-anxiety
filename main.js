@@ -43,6 +43,20 @@
     this.set(0);
   };
 
+  var PauseButton = function(elem) {
+    this.paused = true;
+    this.elem = elem;
+  };
+
+  PauseButton.prototype.setOnClick = function(f) {
+    var that = this;
+    this.elem.onclick = function() {
+      that.elem.textContent = that.paused ? 'Resume' : 'Pause';
+      that.paused = !that.paused;
+      f(that.paused);
+    };
+  };
+
   var TextBox = function(textArea) {
     this.textArea = textArea;
   };
@@ -161,10 +175,10 @@
 
     var timers = [autosave(draft, saved, 60), countdown(bar, 200)];
     var group = new TimerGroup(timers);
-    group.toggle();
-    var pauseButton = document.getElementById('pause-button');
-    pauseButton.onclick = function() {
+    var pauseButton = new PauseButton(document.getElementById('pause-button'));
+    pauseButton.setOnClick(function() {
       group.toggle();
-    };
+    });
+    group.toggle();
   };
 })();
