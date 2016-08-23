@@ -77,6 +77,10 @@
     this.textArea.onkeyup = f;
   };
 
+  TextBox.prototype.toggleDisabled = function() {
+    this.textArea.disabled = !this.textArea.disabled;
+  };
+
   TextBox.prototype.save = function(anchor) {
     var blob = new Blob([this.getValue()], {type: 'text/plain'});
     anchor.href = URL.createObjectURL(blob);
@@ -178,6 +182,7 @@
     var pauseButton = new PauseButton(document.getElementById('pause-button'));
     pauseButton.setOnClick(function() {
       group.toggle();
+      draft.toggleDisabled();
     });
     group.toggle();
   };
