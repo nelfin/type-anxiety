@@ -43,6 +43,17 @@
     this.set(0);
   };
 
+  var Notification = function(elem, className) {
+    this.elem = elem;
+    this.className = className;
+  };
+
+  Notification.prototype.flash = function() {
+    this.elem.classList.remove(this.className);
+    void this.elem.offsetWidth; // trigger reflow
+    this.elem.classList.add(this.className);
+  };
+
   var PauseButton = function(elem) {
     this.paused = true;
     this.elem = elem;
@@ -137,12 +148,13 @@
     this.paused = !this.paused;
   };
 
-  function autosave(source, destination, seconds) {
+  function autosave(source, destination, seconds, onSave) {
     var saveMillis = seconds * 1000;
     return new Timer(saveMillis, function() {
       var text = source.getValue();
       if (text) {  // don't ovewrite saved with nothing
         destination.setValue(text);
+        onSave();
       }
     });
   }
@@ -177,7 +189,14 @@
       saved.save(saveLink);
     };
 
-    var timers = [autosave(draft, saved, 60), countdown(bar, 200)];
+    var save = new Notification(
+      document.getElementById('saved-notification'),
+      'fade-out'
+    );
+    var timers = [
+      autosave(draft, saved, 60, function() { save.flash(); }),
+      countdown(bar, 200)
+    ];
     var group = new TimerGroup(timers);
     var pauseButton = new PauseButton(document.getElementById('pause-button'));
     pauseButton.setOnClick(function() {
